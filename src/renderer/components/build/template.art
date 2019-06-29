@@ -1,0 +1,41 @@
+<% var line = '\n'; %>
+<% var data = obj.pageData; %>
+<% var basePath = obj.basePath; %>
+/*!<%=line%>
+ * Automatically generated interface call documentation based on swagger<%=line%>
+ * wx - v1.0.0 (2019-06-29*T17:30:51+0800)<%=line%>
+ * Released under MIT license<%=line%>
+ */<%=line%>
+import axios from './axios.js';<%=line%>
+import qs from 'qs';<%=line%>
+const basePath="<%=basePath%>";<%=line%>
+
+<%for(var i = 0; i < data.length; i++){
+  var item = data[i];
+  var consumes=item.consumes;
+  var description=item.description;
+  var funName=item.funName;
+  var method=item.method;
+  var operationId=item.operationId;
+  var parameters=item.parameters;
+  var responses=item.responses;
+  var produces=item.produces;
+  var summary=item.summary;
+  var tag=item.tag;
+  var url=item.url;
+  var tagDescription=item.tagDescription;%>
+  export function <%=funName>(params={},callback){<%=line%>
+    
+    axios.request({<%=line%>
+      "url" : "<%=basePath%><%=url%>",<%=line%>
+      "method" : "<%=method%>",<%=line%>
+      "baseURL":"<%=basePath%>",<%=line%>
+      <%if(parameters.hasOwnProperty('query')){%>
+      "params":"<%=parameters.query%>",<%=line%>
+      <%}else if(parameters.hasOwnProperty('body') && ['post','put','patch'].indexOf(method) !== -1){%>
+      "data":"<%=parameters.body%>",<%=line%>
+      <%}%>
+      
+    })<%=line%>
+  }<%=line%>
+<%}%>
